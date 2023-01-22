@@ -1,0 +1,18 @@
+- LLDP_NEIGHBORS:
+  - capability: '18:07:01.873'
+    hold_time: '22'
+    local_inst: Jan
+    neighbor: Sun
+    port: UTC
+  - capability: R
+    hold_time: '120'
+    local_inst: Gi0/0/0/1
+    neighbor: P_2.test.ru
+    port: Gi0/0/0/1
+  - capability: R
+    hold_time: '120'
+    local_inst: Gi0/0/0/2
+    neighbor: P_1.test.ru
+    port: Gi0/0/0/2
+  total:
+    count: '2'

@@ -4,7 +4,10 @@ from validateData import validate
 from getData import connection
 from parseData import parser
 from saveData import save
-import pprint
+from flask import Flask, request
+from flasgger import Swagger, LazyString, LazyJSONEncoder
+from flasgger import swag_from
+
 
 def main():
     # Get input params
@@ -48,8 +51,47 @@ def main():
     parsed_data = parser.parse_ttp(init_parser, response, format_to_save)
 
     path = save.saveTo(parsed_data, format_to_save, command)
-    print(path)
+    absolute_path = path[0]
+    name_of_model = path[1]
+    print("Saved to: ", path)
+    createServer(absolute_path, name_of_model)
     return True
+
+
+def createServer(path, name_of_model):
+    app = Flask(__name__)
+    app.json_encoder = LazyJSONEncoder
+    swagger_template = dict(
+    info = {
+        'title': LazyString(lambda: 'Lime  UI'),
+        'version': LazyString(lambda: '0.3'),
+        'description': LazyString(lambda: 'Test API'),
+        },
+        host = LazyString(lambda: request.host)
+    )
+    swagger_config = {
+        "headers": [],
+        "specs": [
+            {
+            "endpoint": 'config',
+            "route": '/config.yml',
+            "rule_filter": lambda rule: True,
+            "model_filter": lambda tag: True,
+            }
+        ],
+        "static_url_path": "/flasgger_static",
+        "swagger_ui": True,
+        "specs_route": "/apidocs/"
+        }
+
+    swagger = Swagger(app, template=swagger_template, config=swagger_config)
+
+    @swag_from("config.yml", methods=['GET'])
+    @app.route(f"/{name_of_model}")
+    def send_file():
+        file = open(path,'r')
+        return file.read()  
+    app.run()
 
 if __name__ == "__main__":
     main()

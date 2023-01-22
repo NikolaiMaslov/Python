@@ -1,0 +1,44 @@
+[
+    [
+        {
+            "age": "00:00:08",
+            "interface": "GigabitEthernet0/0/0/0",
+            "ip": "192.168.224.1",
+            "mac": "00:50:56:c0:00:08",
+            "state": "dynamic",
+            "type": "ARPA"
+        },
+        {
+            "age": "00:03:24",
+            "interface": "GigabitEthernet0/0/0/0",
+            "ip": "192.168.224.2",
+            "mac": "00:50:56:fc:f2:0f",
+            "state": "dynamic",
+            "type": "ARPA"
+        },
+        {
+            "age": "01:20:19",
+            "interface": "GigabitEthernet0/0/0/0",
+            "ip": "192.168.224.138",
+            "mac": "00:0c:29:4b:77:39",
+            "state": "dynamic",
+            "type": "ARPA"
+        },
+        {
+            "age": -1,
+            "interface": "GigabitEthernet0/0/0/0",
+            "ip": "192.168.224.150",
+            "mac": "50:00:00:06:00:01",
+            "state": "interface",
+            "type": "ARPA"
+        },
+        {
+            "age": "00:33:47",
+            "interface": "GigabitEthernet0/0/0/0",
+            "ip": "192.168.224.254",
+            "mac": "00:50:56:f7:1b:ff",
+            "state": "dynamic",
+            "type": "ARPA"
+        }
+    ]
+]
